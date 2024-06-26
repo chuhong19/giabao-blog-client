@@ -9,6 +9,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { PostsContext } from "../contexts/PostsContext";
 import InfoPostModal from "../components/modals/InfoPostModal";
 import EditPostModal from "../components/modals/EditPostModal";
+import DeletePostModal from "../components/modals/DeletePostModal";
 
 const Home = () => {
 
@@ -23,7 +24,8 @@ const Home = () => {
         allMyPostsState: { allMyPosts, allMyPostsLoading },
         getAllMyPosts,
         setShowInfoPostModal,
-        setShowEditPostModal
+        setShowEditPostModal,
+        setShowDeletePostModal
     } = useContext(PostsContext)
 
     useEffect(() => {
@@ -33,7 +35,7 @@ const Home = () => {
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [selectedPostAuthor, setSelectedPostAuthor] = useState(null);
     const [selectedPostCreatedAt, setSelectedPostCreatedAt] = useState(null);
-
+   
     const handleShowInfoModal = (postId, postAuthorName, postCreatedAt) => {
         setShowInfoPostModal(true);
         setSelectedPostId(postId);
@@ -43,6 +45,13 @@ const Home = () => {
 
     const handleShowEditPostModal = (postId, postAuthorName, postCreatedAt) => {
         setShowEditPostModal(true);
+        setSelectedPostId(postId);
+        setSelectedPostAuthor(postAuthorName);
+        setSelectedPostCreatedAt(postCreatedAt);
+    }
+
+    const handleShowDeletePostModal = (postId, postAuthorName, postCreatedAt) => {
+        setShowDeletePostModal(true);
         setSelectedPostId(postId);
         setSelectedPostAuthor(postAuthorName);
         setSelectedPostCreatedAt(postCreatedAt);
@@ -87,6 +96,7 @@ const Home = () => {
                                     post={post}
                                     onShowInfoModal={() => handleShowInfoModal(post.id, post.authorName, post.createdAt)}
                                     onShowEditPostModal={() => handleShowEditPostModal(post.id, post.authorName, post.createdAt, post.title, post.content)}
+                                    onShowDeletePostModal={() => handleShowDeletePostModal(post.id, post.authorName, post.createdAt)}
                                 />
                             </Col>
                         )
@@ -96,6 +106,8 @@ const Home = () => {
                 <InfoPostModal postId={selectedPostId} postAuthorName={selectedPostAuthor} postCreatedAt={selectedPostCreatedAt}/>
                 {/* Open edit post modal */}
                 <EditPostModal postId={selectedPostId} postAuthorName={selectedPostAuthor} postCreatedAt={selectedPostCreatedAt} />
+                {/* Open delete post modal */}
+                <DeletePostModal postId={selectedPostId} postAuthorName={selectedPostAuthor} postCreatedAt={selectedPostCreatedAt} />
             </>
         )
     }

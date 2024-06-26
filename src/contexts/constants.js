@@ -17,3 +17,4 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const FIND_POST = 'FIND_POST';
 
 export const RELOAD_POST = 'RELOAD_POST';
+export const DELETE_POST = 'DELETE_POST';

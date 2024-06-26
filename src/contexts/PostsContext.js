@@ -29,6 +29,7 @@ const PostsContextProvider = ({ children }) => {
     const [showReportPostModal, setShowReportPostModal] = useState(false);
     const [showEditPostModal, setShowEditPostModal] = useState(false);
     const [showEditProfileModal, setShowEditProfileModal] = useState(false);
+    const [showDeletePostModal, setShowDeletePostModal] = useState(false);
 
     // Get all posts
     const getAllPosts = async () => {
@@ -131,6 +132,15 @@ const PostsContextProvider = ({ children }) => {
         }
     }
 
+    // Delete post
+    const deletePost = async (postId) => {
+        try {
+            await axios.post(`${apiUrl}/post/delete`, {postId: postId});
+        }   catch (error) {
+            return error;
+        }
+    }
+
     // Post context data
     const PostsContextData = {
         allPostsState,
@@ -147,12 +157,15 @@ const PostsContextProvider = ({ children }) => {
         setShowEditPostModal,
         showEditProfileModal,
         setShowEditProfileModal,
+        showDeletePostModal, 
+        setShowDeletePostModal,
         findPost,
         updatePost,
         likePost,
         dislikePost,
         unlikePost,
-        undislikePost
+        undislikePost,
+        deletePost
     };
 
     return (

@@ -18,7 +18,7 @@ const RegisterForm = () => {
     username: '',
     password: '',
     confirmPassword: '',
-    gender: 'male'
+    gender: ''
   });
 
   const [alert, setAlert] = useState(null);
@@ -47,98 +47,102 @@ const RegisterForm = () => {
       }
     } catch (error) {
       setAlert({ type: 'danger', message: error });
-        setTimeout(() => setAlert(null), 5000);
+      setTimeout(() => setAlert(null), 5000);
     }
   }
 
-    return (
-        <>
-          <Form className='my-4' onSubmit={register}>
-          <AlertMessage info={alert} />
-          <Form.Group>
-              <Form.Control
-                type='text'
-                placeholder='First name'
-                name='firstname'
-                required
-                value={firstname}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group><Form.Group>
-              <Form.Control
-                type='text'
-                placeholder='Last name'
-                name='lastname'
-                required
-                value={lastname}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type='text'
-                placeholder='Username'
-                name='username'
-                required
-                value={username}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type='password'
-                placeholder='Password'
-                name='password'
-                required
-                value={password}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type='password'
-                placeholder='Confirm password'
-                name='confirmPassword'
-                required
-                value={confirmPassword}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type='text'
-                placeholder='Email'
-                name='email'
-                required
-                value={email}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type='text'
-                placeholder='Gender'
-                name='gender'
-                required
-                value={gender}
-                onChange={onChangeRegisterForm}
-              />
-            </Form.Group>
-            <Button variant='success' type='submit'>
-              Register
-            </Button>
-          </Form>
-          <p>
-            Already have an account?
-            <Link to='/login'>
-              <Button variant='info' size='sm' className='ml-2'>
-                Login
-              </Button>
-            </Link>
-          </p>
-        </>
-      );
-        
+  return (
+    <>
+      <Form className='my-4' onSubmit={register}>
+        <AlertMessage info={alert} />
+        <Form.Group>
+          <Form.Control
+            type='text'
+            placeholder='First name'
+            name='firstname'
+            required
+            value={firstname}
+            onChange={onChangeRegisterForm}
+          />
+        </Form.Group><Form.Group>
+          <Form.Control
+            type='text'
+            placeholder='Last name'
+            name='lastname'
+            required
+            value={lastname}
+            onChange={onChangeRegisterForm}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type='text'
+            placeholder='Username'
+            name='username'
+            required
+            value={username}
+            onChange={onChangeRegisterForm}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type='password'
+            placeholder='Password'
+            name='password'
+            required
+            value={password}
+            onChange={onChangeRegisterForm}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type='password'
+            placeholder='Confirm password'
+            name='confirmPassword'
+            required
+            value={confirmPassword}
+            onChange={onChangeRegisterForm}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type='text'
+            placeholder='Email'
+            name='email'
+            required
+            value={email}
+            onChange={onChangeRegisterForm}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            as='select'
+            name='gender'
+            value={gender}
+            onChange={onChangeRegisterForm}
+            required
+          >
+            <option value='MALE'>Male</option>
+            <option value='FEMALE'>Female</option>
+            <option value='UNKNOWN'>Unknown</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Button variant='success' type='submit'>
+          Register
+        </Button>
+      </Form>
+      <p>
+        Already have an account?
+        <Link to='/login'>
+          <Button variant='info' size='sm' className='ml-2'>
+            Login
+          </Button>
+        </Link>
+      </p>
+    </>
+  );
+
 };
 
 export default RegisterForm;

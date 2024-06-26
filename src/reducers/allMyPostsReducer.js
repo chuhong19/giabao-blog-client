@@ -1,4 +1,4 @@
-import { MY_POST_LOADED_SUCCESS, MY_POST_LOADED_FAIL, UPDATE_POST, FIND_POST } from "../contexts/constants";
+import { MY_POST_LOADED_SUCCESS, MY_POST_LOADED_FAIL, UPDATE_POST, FIND_POST, DELETE_POST } from "../contexts/constants";
 
 export const allMyPostsReducer = (state, action) => {
     const { type, payload } = action;
@@ -29,6 +29,11 @@ export const allMyPostsReducer = (state, action) => {
             return {
                 ...state,
                 allMyPosts: newPosts,
+            };
+        case DELETE_POST:
+            return {
+                ...state,
+                allMyPosts: state.allMyPosts.filter((post) => post._id !== payload)
             };
         default:
             return state;

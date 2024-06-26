@@ -122,3 +122,27 @@ button.post-button.btn:active {
 	color: red;
   }
   
+/* Form login radio-box */
+
+.radio-group {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .radio-label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+  }
+  
+  .radio-input {
+	margin-right: 10px;
+  }
+  
+  .radio-container {
+	margin-top: 15px;
+	padding: 10px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+  }
+  
